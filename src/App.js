@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import PokemonList from './Components/PokemonsList';
+import Pagination from './Components/Pagination';
 
 function App() {
 
   const [pokemons, setPokemons] = useState([]);
   const [pokemonInfo, setPokemonInfo] = useState([]);
-  const [pokeUrl, setPokeUrl] = useState('https://pokeapi.co/api/v2/pokemon');
+  const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
+  const [pokeUrl, setPokeUrl] = useState(BASE_URL);
   const [nextPage, setNextPage] = useState('');
   const [previousPage, setPreviousPage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -13,29 +16,36 @@ function App() {
   const getPokemons = async() => {
 
     const res = await axios.get(pokeUrl)
-    const data = res.data
+    const data = res.data.results
+
+    //console.log("data: ", res.data.results)
+    
     setNextPage(res.data.next)
     setPreviousPage(res.data.previous)
-    
-    function pokemonObject(result){
-      result.forEach( async (pokemon) => {
-        const response = await axios.get(pokeUrl+`/${pokemon.name}`)
-        const data = await response
 
+    function pokemonObject(result){
+
+      result.forEach( async (pokemon) => {
+        const response = await axios.get(BASE_URL +`/${pokemon.name}`)
+        const data = await response
+        console.log("data fetched --> ", data)
         setPokemons(list => [...list, data.data])
 
         
       })
     }
-    pokemonObject(data.results)
+    pokemonObject(data)
   }
-  //console.log(pokemons)
+  
 
 
   useEffect(() => {
-
+    setIsLoading(true)
+    setPokemons([]);
     getPokemons();
-  }, [])
+    setIsLoading(false)
+    //console.log(pokemons)
+  }, [pokeUrl])
 
   function goToNextPage() {
 
@@ -47,10 +57,13 @@ function App() {
     setPokeUrl(previousPage)
   }
   
-  //if(isLoading) return "Loading..."
+  if(isLoading) return "Loading..."
 
   return (
-    <div>
+    <div >
+      {isLoading ? "Loading..." : ""}
+      <Pagination nextPage={{nextPage, goToNextPage}} previousPage={{previousPage, goToPreviousPage}} />
+      <PokemonList pokemons={pokemons} />
     </div>
   );
 }
