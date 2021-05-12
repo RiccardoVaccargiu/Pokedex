@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Style with Material-UI
-import { styles } from "../styles.js";
+import { styles } from "../../../styles.js";
 const useStyles = styles;
 
 

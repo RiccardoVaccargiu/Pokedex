@@ -7,8 +7,7 @@ gridContainer: {
     width: '600px',
     height: '745px',
     marginTop: '50px',
-    paddingTop: '55px',
-    paddingLeft: '3%',
+    //paddingLeft: '3%',
     //background: 'yellow',
     alignItems: "center",
     justify: "center"
@@ -71,6 +70,15 @@ pokemonSpecsCard: {
     height: "600px",
     background: 'red',
     margin: 'auto'
+},
+
+inputField: {
+
+    width: '250px',
+    height: '30px',
+    display: 'flex',
+    //marginBottom: '30px'
+    margin: '0px 0px 30px 10px'
 }
 
 
