@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import PokemonList from './Components/PokemonsList';
-import Pagination from './Components/Pagination';
+import Pokedex from './Components/Pokedex';
 
 function App() {
 
@@ -28,7 +27,7 @@ function App() {
       result.forEach( async (pokemon) => {
         const response = await axios.get(BASE_URL +`/${pokemon.name}`)
         const data = await response
-        console.log("data fetched --> ", data)
+        //console.log("data fetched --> ", data)
         setPokemons(list => [...list, data.data])
 
         
@@ -38,8 +37,8 @@ function App() {
   }
   
 
-
   useEffect(() => {
+
     setIsLoading(true)
     setPokemons([]);
     getPokemons();
@@ -61,9 +60,7 @@ function App() {
 
   return (
     <div >
-      {isLoading ? "Loading..." : ""}
-      <Pagination nextPage={{nextPage, goToNextPage}} previousPage={{previousPage, goToPreviousPage}} />
-      <PokemonList pokemons={pokemons} />
+      <Pokedex pokemons={pokemons} nextPage={{nextPage, goToNextPage}} previousPage={{previousPage, goToPreviousPage}} />
     </div>
   );
 }
