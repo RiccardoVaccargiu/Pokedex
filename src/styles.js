@@ -10,20 +10,23 @@ gridContainer: {
     //paddingLeft: '3%',
     //background: 'yellow',
     alignItems: "center",
-    justify: "center"
+    justify: "center",
 },
 
 grid: {
     float: "left",
     display:"flex",
     flexWrap:"nowrap",
-    margin: '20px',
+    //background: 'orange',
+    width: '600px',
+    height: '675px',
 },
 
 paper: {
+    height: '180px',
     textAlign: 'center',
+    margin: '10px',
     color: theme.palette.text.secondary,
-    
     
 },
 
@@ -75,10 +78,18 @@ pokemonSpecsCard: {
 inputField: {
 
     width: '250px',
-    height: '30px',
+    height: '70px',
     display: 'flex',
-    //marginBottom: '30px'
-    margin: '0px 0px 30px 10px'
+    //background: 'green',
+    float: 'left',
+    marginLeft: '10px'
+},
+
+sortingDropdown: {
+
+    width: '110px',
+    marginLeft: '490px',
+    //background: 'red'
 }
 
 

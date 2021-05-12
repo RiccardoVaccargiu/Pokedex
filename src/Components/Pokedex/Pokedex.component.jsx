@@ -1,45 +1,46 @@
-import { useEffect, useState } from 'react';
-import { Box, Button } from '@material-ui/core';
-import PokemonList from './Components/PokemonsList.component';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Box, Button, CircularProgress } from '@material-ui/core';
+import PokemonsList from './components/pokemonlist/pokemonslist.component';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import PokemonSpecs from './Components/PokemonSpecs.component';
-import axios from 'axios';
+import PokemonSpecs from './components/pokemonspecs.component';
+
 
 //Style with Material-UI
 import { styles } from "../../styles.js";
 const useStyles = styles;
 
-function Pokedex(props){
+function Pokedex(){
 
-  const [pokemons, setPokemons] = useState([]);
-  const [pokemonInfo, setPokemonInfo] = useState([]);
-  const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
-  const [pokeUrl, setPokeUrl] = useState(BASE_URL);
-  const [nextPage, setNextPage] = useState('');
-  const [previousPage, setPreviousPage] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  const classes = useStyles();
-  const [ pokemonSpecs, setPokemonSpecs ] = useState();
+    const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
+    const [pokemons, setPokemons] = useState([]);
+    const [pokeUrl, setPokeUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
+    const [nextPage, setNextPage] = useState('');
+    const [previousPage, setPreviousPage] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+    const [ pokemonSpecs, setPokemonSpecs ] = useState();
+    const classes = useStyles();
 
+    const getPokemons = async() => {
+      
+      //setIsLoading(true)
+      const res = await axios.get(pokeUrl)
+      const data = res.data.results
 
-  const getPokemons = async() => {
-
-    const res = await axios.get(pokeUrl)
-    const data = res.data.results
-
-    //console.log("data: ", res.data.results)
+      //console.log("data: ", res.data.results)
     
-    setNextPage(res.data.next)
-    setPreviousPage(res.data.previous)
+      setNextPage(res.data.next)
+      setPreviousPage(res.data.previous)
 
-    function pokemonObject(result){
+      function pokemonObject(result){
 
-      result.forEach( async (pokemon) => {
-        const response = await axios.get(BASE_URL +`/${pokemon.name}`)
-        const data = await response
-        //console.log("data fetched --> ", data)
-        setPokemons(list => [...list, data.data])
+        result.forEach( async (pokemon) => {
+          const response = await axios.get(BASE_URL +`/${pokemon.name}`)
+          .then(/*setIsLoading(false)*/)
+          const data = await response
+          //console.log("data fetched --> ", data)
+          setPokemons(list => [...list, data.data])
 
         
       })
@@ -49,11 +50,9 @@ function Pokedex(props){
   
 
   useEffect(() => {
-
-    setIsLoading(true)
+    
     setPokemons([]);
     getPokemons();
-    setIsLoading(false)
     //console.log(pokemons)
   }, [pokeUrl])
 
@@ -67,17 +66,18 @@ function Pokedex(props){
     setPokeUrl(previousPage)
   }
   
-  if(isLoading) return "Loading..."
 
     return(
         <Box display="flex" flexDirection="row">
             <Box className={classes.paginationButtonLeft}>
                 {previousPage && <Button className={classes.arrow}><ArrowLeftIcon className={classes.arrowIcon} onClick={goToPreviousPage} /></Button>}
             </Box>
-            <PokemonList pokemons={pokemons} setPokemonSpecs={setPokemonSpecs}/>
+            <PokemonsList pokemons={pokemons} setPokemonSpecs={setPokemonSpecs}/>
+            
             <Box className={classes.paginationButtonRight}>
                 {nextPage && <Button className={classes.arrow} ><ArrowRightIcon className={classes.arrowIcon} onClick={goToNextPage}/> </Button>}
             </Box>
+            
             {pokemonSpecs ? <PokemonSpecs pokemon={pokemonSpecs} /> : ""}
         </Box>
     )

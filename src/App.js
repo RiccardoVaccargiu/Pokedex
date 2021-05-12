@@ -1,11 +1,6 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import Pokedex from './Components/Pokedex/Pokedex.component';
-import Button from '@material-ui/core/Button';
+import Pokedex from './Components/Pokedex/pokedex.component';
 
 function App() {
-
-  
 
   return (
     <div >

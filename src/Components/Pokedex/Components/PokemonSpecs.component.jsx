@@ -13,7 +13,7 @@ function PokemonSpecs({ pokemon }){
 
 
         <div className={classes.pokemonSpecsCard}>
-            <img width="200px" height="200px" src={pokemon.sprites.other.dream_world.front_default} />
+            <img alt="pokemon" width="200px" height="200px" src={pokemon.sprites.other.dream_world.front_default} />
             <br />
             <p style={{fontSize: "40px"}}>{pokemon.name}</p>
             {pokemon.types.map((type, id) =>(
