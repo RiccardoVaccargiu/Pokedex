@@ -4,7 +4,7 @@ function App() {
 
   return (
     <div >
-      <Pokedex /*pokemons={pokemons} nextPage={{nextPage, goToNextPage}} previousPage={{previousPage, goToPreviousPage}}*/ />
+      <Pokedex />
     </div>
   );
 }
