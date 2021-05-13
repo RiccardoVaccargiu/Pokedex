@@ -2,17 +2,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const pokedexList = makeStyles((theme) => ({
 
-grid: {
-    float: "left",
-    display:"flex",
-    flexWrap:"nowrap",
-    //background: 'orange',
-    width: '600px',
-    height: '675px',
-},
+
 
 paper: {
-    height: '180px',
+
     textAlign: 'center',
     margin: '10px',
     color: theme.palette.text.secondary,
@@ -34,6 +27,18 @@ sortingDropdown: {
     width: '110px',
     marginLeft: '490px',
     //background: 'red'
-}
+},
+
+pokemonsGridList: {
+
+    width: '850px',
+    height: '675px',
+    maxWidth: '1000px',
+    display:"flex",
+    flexWrap:"wrap",
+    //background: 'orange',
+
+},
+
 
 }))

@@ -51,7 +51,7 @@ function Pokedex(){
 
   useEffect(() => {
     
-    setPokemons([]);
+    //setPokemons([]);
     getPokemons();
     //console.log(pokemons)
   }, [pokeUrl])
@@ -68,18 +68,22 @@ function Pokedex(){
   
 
     return(
-        <Box display="flex" flexDirection="row">
-            <Box className={classes.paginationButtonLeft}>
+      <>
+        <Box display="flex" >
+            {/*<Box className={classes.paginationButtonLeft}>
                 {previousPage && <Button className={classes.arrow}><ArrowLeftIcon className={classes.arrowIcon} onClick={goToPreviousPage} /></Button>}
-            </Box>
+            </Box>*/}
             <PokemonsList pokemons={pokemons} setPokemonSpecs={setPokemonSpecs}/>
-            
-            <Box className={classes.paginationButtonRight}>
+            {/*<Box className={classes.paginationButtonRight}>
                 {nextPage && <Button className={classes.arrow} ><ArrowRightIcon className={classes.arrowIcon} onClick={goToNextPage}/> </Button>}
-            </Box>
+            </Box>*/}
             
             {pokemonSpecs ? <PokemonSpecs pokemon={pokemonSpecs} /> : ""}
         </Box>
+        <div className={classes.loadMoreButton}>
+        <Button variant='outlined' onClick={goToNextPage}>Load More</Button>
+      </div>
+      </>
     )
 }
 

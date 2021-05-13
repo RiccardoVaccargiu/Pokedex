@@ -12,6 +12,7 @@ List: {
     height: '730px',
     maxHeight: 730,
     marginTop: '130px',
+    marginRight: '150px'
 }
 
 }));

@@ -14,7 +14,7 @@ Checkbox,
 FormLabel,
 FormGroup,
 FormControlLabel,
-List,
+GridList,
 ListItem} from '@material-ui/core';
 import CaughtPokemonsList from './components/caughtpokemonslist.component.jsx';
 
@@ -115,9 +115,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
 
             case 'All':
                 return (
-                    <div className={classes.grid}>
-                <Grid  container>
-                    {pokemons.map((pokemon, id) => (
+                    pokemons.map((pokemon, id) => (
                             <Paper key={id} className={classes.paper}>
                                 <FormControl component="fieldset">
                                 <FormGroup aria-label="position" row>
@@ -134,65 +132,55 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                                 <p>{pokemon.name}</p>
                             
                             </Paper>
-                    ))}
-                </Grid>
-            </div>
+                    ))
                 )
             
             case 'Caught':
                 console.log(pokemonsState)
                 return (
-                    <div className={classes.grid}>
-                        <Grid  container>
-                            {pokemonsState.map((pokemon, id) => (
-                                pokemon.caught ?
-                                <Paper key={id} className={classes.paper}>
-                                    <FormControl component="fieldset">
-                                    <FormGroup aria-label="position" row>
-                                        <FormControlLabel
-                                        value="top"
-                                        control={<Checkbox color="primary" checked={caughtPokemon.includes(pokemon.name) ? true : false} onClick={() => handlePokemonCaught(pokemon.name)} />}
-                                        label="Caught"
-                                        labelPlacement="end"
-                                        />
-                                    </FormGroup>
-                                    </FormControl>
-                                    <br />
-                                    <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.sprites.front_default} />
-                                    <p>{pokemon.name}</p>
-                                
-                                </Paper>
-                                : ""
-                            ))}
-                        </Grid>
-                    </div>
+                    pokemonsState.map((pokemon, id) => (
+                        pokemon.caught ?
+                        <Paper key={id} className={classes.paper}>
+                            <FormControl component="fieldset">
+                            <FormGroup aria-label="position" row>
+                                <FormControlLabel
+                                value="top"
+                                control={<Checkbox color="primary" checked={caughtPokemon.includes(pokemon.name) ? true : false} onClick={() => handlePokemonCaught(pokemon.name)} />}
+                                label="Caught"
+                                labelPlacement="end"
+                                />
+                            </FormGroup>
+                            </FormControl>
+                            <br />
+                            <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.sprites.front_default} />
+                            <p>{pokemon.name}</p>
+                        
+                        </Paper>
+                        : ""
+                    ))
                 )
             case 'To Catch':
                 return (
-                    <div className={classes.grid}>
-                        <Grid  container>
-                            {pokemonsState.map((pokemon, id) => (
-                                !pokemon.caught ?
-                                <Paper key={id} className={classes.paper}>
-                                    <FormControl component="fieldset">
-                                    <FormGroup aria-label="position" row>
-                                        <FormControlLabel
-                                        value="top"
-                                        control={<Checkbox color="primary" checked={caughtPokemon.includes(pokemon.name) ? true : false} onClick={() => handlePokemonCaught(pokemon.name)} />}
-                                        label="Caught"
-                                        labelPlacement="end"
-                                        />
-                                    </FormGroup>
-                                    </FormControl>
-                                    <br />
-                                    <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.sprites.front_default} />
-                                    <p>{pokemon.name}</p>
-                                
-                                </Paper>
-                                : ""
-                            ))}
-                        </Grid>
-                    </div>
+                    pokemonsState.map((pokemon, id) => (
+                        !pokemon.caught ?
+                        <Paper key={id} className={classes.paper}>
+                            <FormControl component="fieldset">
+                            <FormGroup aria-label="position">
+                                <FormControlLabel
+                                value="top"
+                                control={<Checkbox color="primary" checked={caughtPokemon.includes(pokemon.name) ? true : false} onClick={() => handlePokemonCaught(pokemon.name)} />}
+                                label="Caught"
+                                labelPlacement="end"
+                                />
+                            </FormGroup>
+                            </FormControl>
+                            <br />
+                            <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.sprites.front_default} />
+                            <p>{pokemon.name}</p>
+                        
+                        </Paper>
+                        : ""
+                    ))
                 )
                 
         }
@@ -239,7 +227,9 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                 </FormControl>
             </div>
         
-            {error !== '' && search.length > 0 ? <p>{error}</p>
+            {error !== '' && search.length > 0 ?
+            
+            <p>{error}</p>
             
             :
             
@@ -254,14 +244,13 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
             </Grid>
             
             :
-            <List style={{width: '700px', height: '500px'}}>
-            <ul>
-            <ListItem>
-                {renderSortedPokemons()}
-            </ListItem>
+            <div style={{marginTop: '85px', marginLeft: '20px'}}>
+            <GridList cellHeight={180} cols={6} className={classes.pokemonsGridList}>
 
-        </ul>
-        </List>
+                {renderSortedPokemons()}
+
+            </GridList>
+            </div>
             
             }
         </div>

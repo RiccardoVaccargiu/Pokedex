@@ -14,52 +14,22 @@ gridContainer: {
     justify: "center",
 },
 
-
-paginationButtonLeft: {
-
-    width: '100px',
-    height: '800px',
-    //background: 'red',
-    marginTop: '50px',
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center"
-},
-
-paginationButtonRight: {
-
-    width: '100px',
-    height: '800px',
-    //background: 'red',
-    marginTop: '50px',
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center"
-
-},
-
-arrow: {
-
-    width: '100px',
-    height: '100px',
-    background: '#E8E8E8',
-    borderRadius: '50%'
-},
-
-arrowIcon: {
-
-    width: '100px',
-    height: '100px',
-},
-
 pokemonSpecsCard: {
-    width: "400px",
+    width: "300px",
     height: "600px",
-    background: 'red',
-    margin: 'auto'
+    //background: 'red',
+    margin: 'auto',
+    marginLeft: '200px'
 },
 
+loadMoreButton: {
 
+    width: '810px',
+    //background: 'yellow',
+    marginLeft: '320px',
+    display: 'flex',
+    justifyContent: 'center'
+}
 
 
 }));
