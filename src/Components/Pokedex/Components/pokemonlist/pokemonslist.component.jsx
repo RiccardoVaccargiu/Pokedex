@@ -200,33 +200,34 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
         <CaughtPokemonsList caughtPokemon={caughtPokemon} />
         
         <div className={classes.gridContainer}>
-            <div className={classes.inputField} >
-                <TextField variant="outlined" onChange={onSearchChange} />
-                
-                {search.length > 0 ? 
-                <Button onClick={searchPokemon}>Search</Button>
-                :
-                <Button disabled >Search</Button>
-                }       
-            </div>
+            <div className={classes.actionHeader}>
+                <div className={classes.inputField} >
+                    <TextField variant="outlined" onChange={onSearchChange} />
+                    
+                    {search.length > 0 ? 
+                    <Button onClick={searchPokemon}>Search</Button>
+                    :
+                    <Button disabled >Search</Button>
+                    }       
+                </div>
 
-            <div className={classes.sortingDropdown}>
-                <FormControl>
-                    <InputLabel>Sort By </InputLabel>
-                    <Select
-                        style={{width: '100px'}}
-                        id="sorting"
-                        value={sortBy}
-                        onChange={onChangeSorting}
-                        name="selectSorting"
-                    >
-                        <MenuItem value="Caught">Caught</MenuItem>
-                        <MenuItem value="To Catch">To Catch</MenuItem>
-                        <MenuItem value="All">All</MenuItem>
-                    </Select>
-                </FormControl>
+                <div className={classes.sortingDropdown}>
+                    <FormControl>
+                        <InputLabel>Sort By </InputLabel>
+                        <Select
+                            style={{width: '100px'}}
+                            id="sorting"
+                            value={sortBy}
+                            onChange={onChangeSorting}
+                            name="selectSorting"
+                        >
+                            <MenuItem value="Caught">Caught</MenuItem>
+                            <MenuItem value="To Catch">To Catch</MenuItem>
+                            <MenuItem value="All">All</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
             </div>
-        
             {error !== '' && search.length > 0 ?
             
             <p>{error}</p>
@@ -234,23 +235,30 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
             :
             
             pokemonFound && search.length > 0 ?
-            
-            <Grid container spacing={3}>
-                <Paper className={classes.paper} onClick={()=> setPokemonSpecs(pokemonFound)}>
+            <GridList cellHeight={180} cols={6} className={classes.pokemonsGridList}>
+            <Paper className={classes.paper} onClick={()=> setPokemonSpecs(pokemonFound)}>
+                <FormControl component="fieldset">
+                <FormGroup aria-label="position">
+                    <FormControlLabel
+                    value="top"
+                    control={<Checkbox color="primary" checked={caughtPokemon.includes(pokemonFound.name) ? true : false} onClick={() => handlePokemonCaught(pokemonFound.name)} />}
+                    label="Caught"
+                    labelPlacement="end"
+                    />
+                </FormGroup>
+                </FormControl>
+                <br />                
                 <img alt="pokemon" width="100px" height="100px" src={pokemonFound.sprites.front_default} />
                     <p>{pokemonFound.name}</p>
                     {/*<Pokemon key={id} pokemon={pokemon} />*/}
                 </Paper>
-            </Grid>
-            
+            </GridList>
             :
-            <div style={{marginTop: '85px', marginLeft: '20px'}}>
             <GridList cellHeight={180} cols={6} className={classes.pokemonsGridList}>
 
                 {renderSortedPokemons()}
 
             </GridList>
-            </div>
             
             }
         </div>
