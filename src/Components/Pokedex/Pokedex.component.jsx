@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Button, CircularProgress } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import PokemonsList from './components/pokemonlist/pokemonslist.component';
-import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import PokemonSpecs from './components/pokemonspecs.component';
 
 
@@ -18,7 +16,7 @@ function Pokedex(){
     const [pokeUrl, setPokeUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
     const [nextPage, setNextPage] = useState('');
     const [previousPage, setPreviousPage] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
+    //const [isLoading, setIsLoading] = useState(true);
     const [ pokemonSpecs, setPokemonSpecs ] = useState();
     const classes = useStyles();
 

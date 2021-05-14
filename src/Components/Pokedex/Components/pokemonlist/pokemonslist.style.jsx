@@ -5,9 +5,9 @@ export const pokedexList = makeStyles((theme) => ({
 gridContainer: {
 
     width: '850px',
-    height: '745px',
+    height: '775px',
     marginTop: '40px',
-    background: 'yellow',
+    //background: 'yellow',
     alignItems: "center",
     justify: "center",
 },
@@ -21,21 +21,7 @@ paper: {
     
 },
 
-inputField: {
 
-    width: '250px',
-    height: '70px',
-    display: 'flex',
-    background: 'green',
-    float: 'left',
-},
-
-sortingDropdown: {
-
-    width: '110px',
-    marginLeft: '690px',
-    background: 'red'
-},
 
 pokemonsGridList: {
 
@@ -44,16 +30,11 @@ pokemonsGridList: {
     maxWidth: '850px',
     display:"flex",
     flexWrap:"wrap",
-    background: 'orange',
+    //background: 'orange',
 
 },
 
-actionHeader: {
 
-    background: 'red',
-    width: '800px',
-    height: '100px'
-}
 
 
 }))
