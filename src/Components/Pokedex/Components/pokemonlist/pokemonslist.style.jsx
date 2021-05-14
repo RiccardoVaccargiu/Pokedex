@@ -14,13 +14,21 @@ gridContainer: {
 
 
 paper: {
-
+    "&:hover":{
+        cursor: 'pointer',
+        background: '#ececec'
+    },
     textAlign: 'center',
     margin: '10px',
     color: theme.palette.text.secondary,
     
 },
 
+onMouseOver: {
+
+    width: '100px',
+    height: '200px'
+},
 
 
 pokemonsGridList: {

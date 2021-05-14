@@ -1,14 +1,16 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography'
+import {Typography, Box} from '@material-ui/core'
 //Style with Material-UI
-import { styles } from "../../../styles.js";
-const useStyles = styles;
+import { PokemonSpecsStyle } from "./pokemonspecs.style";
+import { getTypeStyle } from './typesstyle.style';
+const useStyles = PokemonSpecsStyle;
 
 
 function PokemonSpecs({ pokemon }){
 
     const classes = useStyles();
-    console.log(pokemon)
+    const localStorageContent = JSON.parse(localStorage.getItem('caughtPokemon'));
+
     return(
 
 
@@ -16,15 +18,18 @@ function PokemonSpecs({ pokemon }){
             <img alt="pokemon" width="200px" height="200px" src={pokemon.sprites.other.dream_world.front_default} />
             <br />
             <Typography variant="h3">{pokemon.name}</Typography>
-            <Typography><b>Types</b></Typography>
+            {localStorageContent.includes(pokemon.name) ? <Typography>CAUGHT</Typography> : <Typography>TO CATCH</Typography>}
+            
+            <div  style={{display: 'flex', flexDirection: 'row'}}>
             {pokemon.types.map((type, id) =>(
-                <div key={id}>
-                <div>
-                    <Typography variant="subtitle1"> {type.type.name}  </Typography>
-                </div>
-                </div>
+                
+                    <Box key={id} style={getTypeStyle(type.type.name)}>{type.type.name}</Box>
+                
             ))}
+            </div>
+            
             <br />
+            
             <Typography variant="subtitle1"> <b>Weight:</b> {pokemon.weight}</Typography>
             <br />
             <Typography variant="subtitle1"><b>Abilities</b></Typography>

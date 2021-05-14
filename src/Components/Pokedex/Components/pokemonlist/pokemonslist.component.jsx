@@ -192,11 +192,15 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
             
             <Header error={error} setError={setError} search={search} setSearch={setSearch} setPokemonFound={setPokemonFound} sortBy={sortBy} setSortBy={setSortBy} />
             
+            {
+                error ? <h2>This pokemon doesn't exist!</h2> :
+            
             <GridList cellHeight={180} cols={6} className={classes.pokemonsGridList}>
 
                 {renderSortedPokemons()}
 
             </GridList>
+            }
         </div>
         </>
     )
