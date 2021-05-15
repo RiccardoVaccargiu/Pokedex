@@ -17,6 +17,11 @@ gridContainer: {
 
 
 paper: {
+    '&:hover':{
+
+        cursor: 'pointer',
+        background: '#ececec'
+    },
     textAlign: 'center',
     margin: '10px',
     color: theme.palette.text.secondary,

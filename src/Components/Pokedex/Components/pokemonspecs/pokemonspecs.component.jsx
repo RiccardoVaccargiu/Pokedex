@@ -16,13 +16,13 @@ function PokemonSpecs({ pokemon }){
             <Grow in>
             <Card elevation={3} className={classes.pokemonSpecsCard}>
             
-            <img alt="pokemon" width="200px" height="200px" src={pokemon.sprites.other.dream_world.front_default} />
+            <img alt="pokemon" width="200px" height="200px" src={pokemon.miniatureSprite} />
             <br />
             <Typography variant="h3">{pokemon.name}</Typography>
             {localStorageContent.includes(pokemon.name) ? <Typography>CAUGHT</Typography> : <Typography>TO CATCH</Typography>}
             
             <div className={classes.box}>
-            {pokemon.types.map((type, id) =>(
+            {pokemon.types.map((type, id) => (
                 
                     <Box key={id} style={getTypeStyle(type.type.name)}>{type.type.name}</Box>
                 
@@ -36,7 +36,7 @@ function PokemonSpecs({ pokemon }){
             <Typography variant="subtitle1"><b>Abilities</b></Typography>
             {pokemon.abilities.map((ability, id) => (
 
-            <Typography variant="subtitle1">{ability.ability.name}</Typography>
+            <Typography key={id} variant="subtitle1">{ability.ability.name}</Typography>
             ))}
             </Card>
             </Grow>

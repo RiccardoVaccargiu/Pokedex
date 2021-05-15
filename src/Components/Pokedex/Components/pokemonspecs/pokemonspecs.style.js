@@ -28,6 +28,10 @@ pokemonSpecsCardContainer: {
     
 pokemonSpecsCard: {
 
+    '&:hover': {
+
+        background: '#ececec'
+    },
     height: '520px',
     padding: '10px',
     textAlign: 'center',

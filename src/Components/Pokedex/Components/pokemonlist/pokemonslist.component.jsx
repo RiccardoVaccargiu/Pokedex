@@ -15,7 +15,7 @@ import CaughtPokemonsList from './components/caughtpokemonlist/caughtpokemonslis
 import { pokedexList } from './pokemonslist.style';
 const useStyles = pokedexList;
 
-const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
+const PokemonsList = ({ pokemons, setPokemons, setPokemonSpecs }) => {
     
     //const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
     //console.log("pokes: ", pokemons)
@@ -31,7 +31,6 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
 
     useEffect(() => {
         let caught;
-        setLoading(true)
         pokemons.map((p) => {
             if(localStorageContent.includes(p.name)){
                 caught = true
@@ -39,25 +38,18 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
             else{
                 caught = false
             }
-            setPokemonsState([...pokemonsState, {
-                name: p.name,
-                moves: p.moves,
-                weight: p.weight,
-                abilities: p.abilities,
-                caught: caught,
-                types: p.types,
-                sprites: p.sprites
+            setPokemonsState([...pokemons, {
+
+                caught: caught
             }])
         })
-    }, [pokemons])
-
-    console.log(pokemonsState)
+    }, [])
 
     
     const handlePokemonCaught = (pokemonName) => {
 
         //When a new pokemon get 'caught', caught property of that pokemon becomes true, on remove becomes false
-        pokemonsState.forEach(p => {
+        pokemons.forEach(p => {
 
             if(p.name === pokemonName){
 
@@ -122,7 +114,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                                     </FormGroup>
                                     </FormControl>
                                     <br />
-                                    <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.sprites.front_default} />
+                                    <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.miniatureSprite} />
                                     <p>{pokemon.name}</p>
                                 </Paper>
                             </Grow>
@@ -130,9 +122,9 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                     )
                 
                 case 'Caught':
-                    console.log(pokemonsState)
+                    //console.log(pokemonsState)
                     return (
-                        pokemonsState.map((pokemon, id) => (
+                        pokemons.map((pokemon, id) => (
                             pokemon.caught ?
                             <Paper key={id} className={classes.paper}>
                                 <FormControl component="fieldset">
@@ -146,7 +138,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                                 </FormGroup>
                                 </FormControl>
                                 <br />
-                                <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.sprites.front_default} />
+                                <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.miniatureSprite} />
                                 <p>{pokemon.name}</p>
                             
                             </Paper>
@@ -155,7 +147,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                     )
                 case 'To Catch':
                     return (
-                        pokemonsState.map((pokemon, id) => (
+                        pokemons.map((pokemon, id) => (
                             !pokemon.caught ?
                             <Paper key={id} className={classes.paper}>
                                 <FormControl component="fieldset">
@@ -169,7 +161,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                                 </FormGroup>
                                 </FormControl>
                                 <br />
-                                <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.sprites.front_default} />
+                                <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.miniatureSprite} />
                                 <p>{pokemon.name}</p>
                             
                             </Paper>

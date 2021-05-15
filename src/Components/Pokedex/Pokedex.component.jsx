@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Button, Grow, Card, Typography } from '@material-ui/core';
+import { Box, Button, Grow, Card, Typography, CircularProgress } from '@material-ui/core';
 import PokemonsList from './components/pokemonlist/pokemonslist.component';
 import PokemonSpecs from './components/pokemonspecs/pokemonspecs.component';
 import { PokedexStyles } from './pokedex.style';
@@ -14,31 +14,38 @@ function Pokedex(){
     const [pokemons, setPokemons] = useState([]);
     const [pokeUrl, setPokeUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
     const [nextPage, setNextPage] = useState('');
-    const [previousPage, setPreviousPage] = useState('');
-    //const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [ pokemonSpecs, setPokemonSpecs ] = useState();
     const classes = useStyles();
 
     const getPokemons = async() => {
       
-      //setIsLoading(true)
+      setIsLoading(true)
       const res = await axios.get(pokeUrl)
       const data = res.data.results
 
       //console.log("data: ", res.data.results)
     
       setNextPage(res.data.next)
-      setPreviousPage(res.data.previous)
 
       function pokemonObject(result){
 
         result.forEach( async (pokemon) => {
           const response = await axios.get(BASE_URL +`/${pokemon.name}`)
-          .then(/*setIsLoading(false)*/)
           const data = await response
           //console.log("data fetched --> ", data)
-          setPokemons(list => [...list, data.data])
-
+          //setPokemons(list => [...list, data.data])
+          //setting state as array of objects where each object contains pokemon's info (objects are cutomized in order to contain nothing but the basic info for each pokemon)
+          setPokemons(list => [...list, {
+            name: data.data.name,
+            moves: data.data.moves,
+            weight: data.data.weight,
+            abilities: data.data.abilities,
+            caught: false,
+            types: data.data.types,
+            miniatureSprite: data.data.sprites.front_default,
+          }])
+          setIsLoading(false)
         
       })
     }
@@ -48,50 +55,38 @@ function Pokedex(){
 
   useEffect(() => {
     
-    //setPokemons([]);
     getPokemons();
-    //console.log(pokemons)
+    //console.log("pokemons : ", pokemons)
   }, [pokeUrl])
 
   function goToNextPage() {
 
     setPokeUrl(nextPage)
   }
-
-  function goToPreviousPage() {
-
-    setPokeUrl(previousPage)
-  }
   
 
-    return(
-      <>
-        <Box display="flex" >
-            {/*<Box className={classes.paginationButtonLeft}>
-                {previousPage && <Button className={classes.arrow}><ArrowLeftIcon className={classes.arrowIcon} onClick={goToPreviousPage} /></Button>}
-            </Box>*/}
-            <PokemonsList pokemons={pokemons} setPokemonSpecs={setPokemonSpecs}/>
-            {/*<Box className={classes.paginationButtonRight}>
-                {nextPage && <Button className={classes.arrow} ><ArrowRightIcon className={classes.arrowIcon} onClick={goToNextPage}/> </Button>}
-            </Box>*/}
-            
-            {/*If no pokemon has been selected, it will be displayed a placeholder*/}
-            {pokemonSpecs ?
-            <PokemonSpecs pokemon={pokemonSpecs} />
-            :            
-            <div className={classes.pokemonSpecsCardContainer}>
-            <Grow in>
-                <Card className={classes.pokemonSpecsCardPlaceholder}>
-                  <Typography variant='h4'>Choose a pokemon to see its details!</Typography>
-                </Card>
-            </Grow>
-          </div>}
-        </Box>
-        <div className={classes.loadMoreButton}>
-        <Button variant='outlined' onClick={goToNextPage}>Load More</Button>
-      </div>
-      </>
-    )
+  return(
+    <>
+      <Box display="flex" >
+          <PokemonsList pokemons={pokemons} setPokemons={setPokemons} setPokemonSpecs={setPokemonSpecs}/>
+          
+          {/*If no pokemon has been selected, a placeholder  will be displayed*/}
+          {pokemonSpecs ?
+          <PokemonSpecs pokemon={pokemonSpecs} />
+          :            
+          <div className={classes.pokemonSpecsCardContainer}>
+          <Grow in>
+              <Card className={classes.pokemonSpecsCardPlaceholder}>
+                <Typography variant='h4'>Choose a pokemon to see its details!</Typography>
+              </Card>
+          </Grow>
+        </div>}
+      </Box>
+      <div className={classes.loadMoreButton}>
+      {isLoading ? <CircularProgress /> :  <Button variant='outlined' onClick={goToNextPage}>Load More</Button>}
+    </div>
+    </>
+  )
 }
 
 export default Pokedex;
