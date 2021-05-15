@@ -4,7 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 //Importing style
-import { CaughtPokemonListStyle } from './caughtpokemonlist.style';
+import { CaughtPokemonListStyle } from './caughtpokemonslist.style';
 const useStyles = CaughtPokemonListStyle;
 
 function CaughtPokemonsList({caughtPokemon}) {

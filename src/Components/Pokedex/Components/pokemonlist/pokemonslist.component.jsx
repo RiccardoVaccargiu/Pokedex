@@ -5,10 +5,11 @@ FormControl,
 Checkbox,
 FormGroup,
 FormControlLabel,
-GridList
+GridList,
+Grow
 } from '@material-ui/core';
-import Header from './components/header.component'
-import CaughtPokemonsList from './components/caughtpokemonslist.component.jsx';
+import Header from './components/header/header.component'
+import CaughtPokemonsList from './components/caughtpokemonlist/caughtpokemonslist.component.jsx';
 
 //Style with Material-UI
 import { pokedexList } from './pokemonslist.style';
@@ -22,7 +23,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
     const [pokemonFound, setPokemonFound] = useState();
     const [pokemonsState, setPokemonsState] = useState([]);
     const [sortBy, setSortBy] = useState('All');
-    //const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const localStorageContent = JSON.parse(localStorage.getItem("caughtPokemon")) || [];
     const [caughtPokemon, setCaughtPokemon] = useState(localStorageContent);
     const [search, setSearch] = useState('');
@@ -30,6 +31,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
 
     useEffect(() => {
         let caught;
+        setLoading(true)
         pokemons.map((p) => {
             if(localStorageContent.includes(p.name)){
                 caught = true
@@ -107,6 +109,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                 case 'All':
                     return (
                         pokemons.map((pokemon, id) => (
+                            <Grow in>
                                 <Paper key={id} className={classes.paper}>
                                     <FormControl component="fieldset">
                                     <FormGroup aria-label="position" row>
@@ -121,8 +124,8 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                                     <br />
                                     <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.sprites.front_default} />
                                     <p>{pokemon.name}</p>
-                                
                                 </Paper>
+                            </Grow>
                         ))
                     )
                 
@@ -186,7 +189,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
     
     return(
         <>
-        <CaughtPokemonsList caughtPokemon={caughtPokemon} />
+        {/*<CaughtPokemonsList caughtPokemon={caughtPokemon} />*/}
         
         <div className={classes.gridContainer}>
             

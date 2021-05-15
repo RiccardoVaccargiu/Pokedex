@@ -63,7 +63,5 @@ export const getTypeStyle = (type) => {
         alignText: 'center',
         //padding: 'auto',
         borderRadius: '10%',
-        dispplay: 'flex',
-        justifyContent: "center"
     };
 };

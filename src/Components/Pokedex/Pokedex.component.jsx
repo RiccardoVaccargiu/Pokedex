@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, Grow, Card, Typography } from '@material-ui/core';
 import PokemonsList from './components/pokemonlist/pokemonslist.component';
-import PokemonSpecs from './components/pokemonspecs.component';
-
+import PokemonSpecs from './components/pokemonspecs/pokemonspecs.component';
+import { PokedexStyles } from './pokedex.style';
 
 //Style with Material-UI
-import { styles } from "../../styles.js";
-const useStyles = styles;
+const useStyles = PokedexStyles;
 
 function Pokedex(){
 
@@ -76,7 +75,17 @@ function Pokedex(){
                 {nextPage && <Button className={classes.arrow} ><ArrowRightIcon className={classes.arrowIcon} onClick={goToNextPage}/> </Button>}
             </Box>*/}
             
-            {pokemonSpecs ? <PokemonSpecs pokemon={pokemonSpecs} /> : ""}
+            {/*If no pokemon has been selected, it will be displayed a placeholder*/}
+            {pokemonSpecs ?
+            <PokemonSpecs pokemon={pokemonSpecs} />
+            :            
+            <div className={classes.pokemonSpecsCardContainer}>
+            <Grow in>
+                <Card className={classes.pokemonSpecsCardPlaceholder}>
+                  <Typography variant='h4'>Choose a pokemon to see its details!</Typography>
+                </Card>
+            </Grow>
+          </div>}
         </Box>
         <div className={classes.loadMoreButton}>
         <Button variant='outlined' onClick={goToNextPage}>Load More</Button>
