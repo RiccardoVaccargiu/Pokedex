@@ -6,26 +6,21 @@ actionHeader: {
     /*'@media (max-width: 880px)':{
         width: '730px',
     },*/
-    //background: 'red',
-    width: '850px',
-    height: '60px'
+    width: '1050px',
+    height: '60px',
+    //background: 'red'
 },
 inputField: {
 
     width: '250px',
     height: '60px',
     display: 'flex',
-    //background: 'green',
     float: 'left',
 },
 
 sortingDropdown: {
-    '@media (max-width: 880px)':{
-        marginLeft: '570px'
-    },
     width: '150px',
-    marginLeft: '700px',
-    //background: 'red'
+    marginLeft: '85%',
 },
 
 }))

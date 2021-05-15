@@ -1,5 +1,5 @@
 import React from 'react';
-import {Typography, Box, Card, Grow} from '@material-ui/core'
+import {Typography, Box, Card, Grow, Paper} from '@material-ui/core'
 //Style with Material-UI
 import { PokemonSpecsStyle } from "./pokemonspecs.style";
 import { getTypeStyle } from './typesstyle.style';
@@ -14,8 +14,8 @@ function PokemonSpecs({ pokemon }){
     return(
         <div className={classes.pokemonSpecsCardContainer}>
             <Grow in>
-            <Card elevation={3} className={classes.pokemonSpecsCard}>
-            
+            <Paper elevation={3} className={classes.pokemonSpecsCard} style={getTypeStyle(pokemon.types[0].type.name, true)}>
+
             <img alt="pokemon" width="200px" height="200px" src={pokemon.miniatureSprite} />
             <br />
             <Typography variant="h3">{pokemon.name}</Typography>
@@ -24,7 +24,7 @@ function PokemonSpecs({ pokemon }){
             <div className={classes.box}>
             {pokemon.types.map((type, id) => (
                 
-                    <Box key={id} style={getTypeStyle(type.type.name)}>{type.type.name}</Box>
+                    <Box key={id} style={getTypeStyle(type.type.name, false)}>{type.type.name}</Box>
                 
             ))}
             </div>
@@ -38,7 +38,7 @@ function PokemonSpecs({ pokemon }){
 
             <Typography key={id} variant="subtitle1">{ability.ability.name}</Typography>
             ))}
-            </Card>
+            </Paper>
             </Grow>
         </div>
     )

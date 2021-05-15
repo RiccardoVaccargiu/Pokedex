@@ -20,7 +20,7 @@ pokemonSpecsCardContainer: {
     width: "400px",
     height: "540px",
     //background: 'red',
-    margin: 'auto',
+    marginLeft: '35px',
     //marginLeft: '10px',
     marginTop: '150px',
     padding: '0 auto',
@@ -36,6 +36,7 @@ pokemonSpecsCard: {
     padding: '10px',
     textAlign: 'center',
     direction:"column",
+    background: 'red'
     /*display: 'flex',
     justifyContent:"center",
     alignItems:"center",*/

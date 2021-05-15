@@ -36,7 +36,7 @@ pokemonSpecsCardContainer: {
     width: "400px",
     height: "540px",
     //background: 'red',
-    margin: 'auto',
+    marginLeft: '35px',
     //marginLeft: '10px',
     marginTop: '150px',
     padding: '0 auto',
@@ -44,6 +44,7 @@ pokemonSpecsCardContainer: {
 
 pokemonSpecsCardPlaceholder: {
 
+   /*width: '400px',
     height: '520px',
     padding: '10px',
     textAlign: 'center',
@@ -51,7 +52,23 @@ pokemonSpecsCardPlaceholder: {
     display: 'flex',
     justifyContent:"center",
     alignItems:"center",
-    color: '#a8a8a8',
+    //color: '#a8a8a8',
+    color: '#2196f3',
+    background: '#cde7fe',
+    marginLeft: '35px'*/
+
+    height: '520px',
+    padding: '10px',
+    textAlign: 'center',
+    direction:"column",
+    background: 'red',
+    direction:"column",
+    display: 'flex',
+    justifyContent:"center",
+    alignItems:"center",
+    //color: '#a8a8a8',
+    color: '#2196f3',
+    background: '#cde7fe',
 }
 
 }));

@@ -6,44 +6,27 @@ Checkbox,
 FormGroup,
 FormControlLabel,
 GridList,
-Grow
+Grow,
+Typography,
+CircularProgress
 } from '@material-ui/core';
 import Header from './components/header/header.component'
-import CaughtPokemonsList from './components/caughtpokemonlist/caughtpokemonslist.component.jsx';
+import { getTypeStyle } from '../pokemonspecs/typesstyle.style'
+//import CaughtPokemonsList from './components/caughtpokemonlist/caughtpokemonslist.component.jsx';
 
 //Style with Material-UI
 import { pokedexList } from './pokemonslist.style';
 const useStyles = pokedexList;
 
-const PokemonsList = ({ pokemons, setPokemons, setPokemonSpecs }) => {
+const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
     
-    //const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
-    //console.log("pokes: ", pokemons)
     const classes = useStyles();
     const [pokemonFound, setPokemonFound] = useState();
-    const [pokemonsState, setPokemonsState] = useState([]);
     const [sortBy, setSortBy] = useState('All');
-    const [loading, setLoading] = useState(false);
     const localStorageContent = JSON.parse(localStorage.getItem("caughtPokemon")) || [];
     const [caughtPokemon, setCaughtPokemon] = useState(localStorageContent);
     const [search, setSearch] = useState('');
-    const [error, setError] = useState('');
-
-    useEffect(() => {
-        let caught;
-        pokemons.map((p) => {
-            if(localStorageContent.includes(p.name)){
-                caught = true
-            }
-            else{
-                caught = false
-            }
-            setPokemonsState([...pokemons, {
-
-                caught: caught
-            }])
-        })
-    }, [])
+    const [error, setError] = useState(false);
 
     
     const handlePokemonCaught = (pokemonName) => {
@@ -57,7 +40,7 @@ const PokemonsList = ({ pokemons, setPokemons, setPokemonSpecs }) => {
             }
         })
 
-        //When the checkbox get clicked, if the corresponding pokemon is included in caughtPokemon it's going to be removed,
+        //When the checkbox is clicked, if the corresponding pokemon is included in caughtPokemon it's going to be removed,
         //else is going to be added
         if(caughtPokemon.includes(pokemonName)){
             
@@ -71,12 +54,12 @@ const PokemonsList = ({ pokemons, setPokemons, setPokemonSpecs }) => {
 
     }
     
+
     const renderSortedPokemons = () => {
 
         if(pokemonFound && search){
             return(
             <div>
-                <p>TROVATO</p>
             <Paper className={classes.paper} onClick={()=> setPokemonSpecs(pokemonFound)}>
             <FormControl component="fieldset">
                 <FormGroup aria-label="position">
@@ -178,7 +161,6 @@ const PokemonsList = ({ pokemons, setPokemons, setPokemonSpecs }) => {
         window.localStorage.setItem("caughtPokemon", JSON.stringify(caughtPokemon))
     }, [caughtPokemon])
 
-    
     return(
         <>
         {/*<CaughtPokemonsList caughtPokemon={caughtPokemon} />*/}
@@ -187,13 +169,17 @@ const PokemonsList = ({ pokemons, setPokemons, setPokemonSpecs }) => {
             
             <Header error={error} setError={setError} search={search} setSearch={setSearch} setPokemonFound={setPokemonFound} sortBy={sortBy} setSortBy={setSortBy} />
             
-            {
-                error ? <h2>This pokemon doesn't exist!</h2> :
-            
+            {error ? 
+            <div className={classes.pokemonNotFound}>
+                <Grow in>
+                    <Typography color="error" variant="h4">This pokemon does not exists...</Typography>
+                </Grow>
+                <br />
+                <CircularProgress className={classes.circularProgressPokemonNotFound} />
+            </div>
+            :
             <GridList cellHeight={180} cols={6} className={classes.pokemonsGridList}>
-
                 {renderSortedPokemons()}
-
             </GridList>
             }
         </div>

@@ -39,5 +39,21 @@ pokemonsGridList: {
 
 },
 
+pokemonNotFound: {
+
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    flexDirection: 'column',
+},
+
+circularProgressPokemonNotFound: {
+
+    color: '#f44336',
+    marginTop: '40px'
+}
+
 
 }))
