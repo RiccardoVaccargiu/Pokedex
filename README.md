@@ -2,9 +2,9 @@
 
 #### _node version 14.15.1_
 
-## dowload the zipped project folder
-
-_uzip the folder_
+1. dowload the zipped project folder
+2. uzip the folder
+3. 
 
 ## you need to install the following packages:
 
