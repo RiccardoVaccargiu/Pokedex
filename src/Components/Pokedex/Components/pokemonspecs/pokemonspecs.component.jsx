@@ -1,5 +1,5 @@
 import React from 'react';
-import {Typography, Box, Card, Grow, Paper} from '@material-ui/core'
+import {Typography, Box, Grow, Paper} from '@material-ui/core'
 //Style with Material-UI
 import { PokemonSpecsStyle } from "./pokemonspecs.style";
 import { getTypeStyle } from './typesstyle.style';

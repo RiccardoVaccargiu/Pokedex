@@ -11,7 +11,6 @@ Typography,
 CircularProgress
 } from '@material-ui/core';
 import Header from './components/header/header.component'
-import { getTypeStyle } from '../pokemonspecs/typesstyle.style'
 //import CaughtPokemonsList from './components/caughtpokemonlist/caughtpokemonslist.component.jsx';
 
 //Style with Material-UI

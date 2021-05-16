@@ -18,8 +18,22 @@ function Pokedex(){
   const [ pokemonSpecs, setPokemonSpecs ] = useState();
   const classes = useStyles();
 
-  const getPokemons = async() => {
-    
+
+  //every time that 'Load More' is clicked, new pokemons are requested using the 'next page' URL (retrieved from the API's JSON)
+  useEffect(() => {
+
+    getPokemons(pokeUrl);
+
+  }, [pokeUrl])
+
+    //Triggered by clicking 'Load More'
+  function onLoadMore() {
+
+    setPokeUrl(loadMore)
+  }
+
+  const getPokemons = async(pokeUrl) => {
+    console.log("PRIMO")
     //when a request for new pokemons get triggered the app keeps staying in a loading state until data is retrieved
     setIsLoading(true)
     
@@ -47,19 +61,6 @@ function Pokedex(){
       
     })
   }
-  
-  //every time that 'Load More' is clicked, new pokemons are requested using the 'next page' URL (retrieved from the API's JSON)
-  useEffect(() => {
-    
-    getPokemons();
-  }, [pokeUrl])
-
-  //Triggered by clicking 'Load More'
-  function onLoadMore() {
-
-    setPokeUrl(loadMore)
-  }
-  
 
   return(
     <>

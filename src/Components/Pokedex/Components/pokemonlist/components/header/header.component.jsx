@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import {
 Button,
@@ -6,13 +6,16 @@ TextField,
 FormControl,
 Select,
 MenuItem,
-Typography
 } from '@material-ui/core';
 import{ HeaderStyle } from './header.style';
 
 const useStyles = HeaderStyle;
 
 function Header(props){
+
+    //destructuring props error and setError (otherwise useEffect throws warnings)
+    const {error} = props;
+    const {setError} = props;
 
     const classes = useStyles();
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
@@ -49,10 +52,10 @@ function Header(props){
     useEffect(() => {
         setTimeout(() => {
           // After 3 seconds set the error value to false
-          props.setError(false)
+          setError(false)
         }, 2000)
         
-      }, [props.error]);
+      }, [error, setError]);
 
 
     return(
