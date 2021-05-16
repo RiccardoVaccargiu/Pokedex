@@ -26,15 +26,27 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
     const [caughtPokemon, setCaughtPokemon] = useState(localStorageContent);
     const [search, setSearch] = useState('');
     const [error, setError] = useState(false);
+    console.log("CAUGHT: ",caughtPokemon)
+    console.log(pokemons)
 
-    
+    //when component is mounted check which pokemons have been caught. if a pokemon has been caught, then p.caught = true,
+    //otherwise every time the page is refreshed p.caught is equal to false and no caught pokemon will be rendered
+    useEffect(() => {
+
+        pokemons.forEach(p => {
+            if(caughtPokemon.includes(p.name)){
+                p.caught = true
+            }
+        })
+    })
+
     const handlePokemonCaught = (pokemonName) => {
 
         //When a new pokemon get 'caught', caught property of that pokemon becomes true, on remove becomes false
         pokemons.forEach(p => {
 
             if(p.name === pokemonName){
-
+               
                 p.caught = !p.caught;
             }
         })
@@ -171,7 +183,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
             {error ? 
             <div className={classes.pokemonNotFound}>
                 <Grow in>
-                    <Typography color="error" variant="h4">This pokemon does not exists...</Typography>
+                    <Typography color="error" variant="h4">This pokemon does not exist...</Typography>
                 </Grow>
                 <br />
                 <CircularProgress className={classes.circularProgressPokemonNotFound} />
