@@ -33,7 +33,7 @@ function Pokedex(){
   }
 
   const getPokemons = async(pokeUrl) => {
-    console.log("PRIMO")
+    
     //when a request for new pokemons get triggered the app keeps staying in a loading state until data is retrieved
     setIsLoading(true)
     
@@ -49,6 +49,7 @@ function Pokedex(){
 
         //setting state as array of objects where each object contains pokemon's info (objects are cutomized in order to contain nothing but the basic info for each pokemon)
         setPokemons(list => [...list, {
+          id: data.data.id,
           name: data.data.name,
           moves: data.data.moves,
           weight: data.data.weight,

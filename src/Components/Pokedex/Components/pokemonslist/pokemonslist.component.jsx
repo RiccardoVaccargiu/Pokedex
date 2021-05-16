@@ -94,7 +94,9 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
 
                 case 'All':
                     return (
-                        pokemons.map((pokemon, id) => (
+                        pokemons
+                        .sort((a,b) => a.id - b.id) //sometimes fetched pokemons are in a wrong order, then should be sorted before rendering them
+                        .map((pokemon, id) => (
                             <Grow in>
                                 <Paper key={id} className={classes.paper}>
                                     <FormControl component="fieldset">
@@ -109,7 +111,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                                     </FormControl>
                                     <br />
                                     <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.miniatureSprite} />
-                                    <p>{pokemon.name}</p>
+                                    <p><span>#{pokemon.id} </span>{pokemon.name}</p>
                                 </Paper>
                             </Grow>
                         ))
@@ -118,7 +120,9 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                 case 'Caught':
                     //console.log(pokemonsState)
                     return (
-                        pokemons.map((pokemon, id) => (
+                        pokemons
+                        .sort((a,b) => a.id - b.id)
+                        .map((pokemon, id) => (
                             pokemon.caught ?
                             <Paper key={id} className={classes.paper}>
                                 <FormControl component="fieldset">
@@ -141,7 +145,9 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                     )
                 case 'To Catch':
                     return (
-                        pokemons.map((pokemon, id) => (
+                        pokemons
+                        .sort((a,b) => a.id - b.id)
+                        .map((pokemon, id) => (
                             !pokemon.caught ?
                             <Paper key={id} className={classes.paper}>
                                 <FormControl component="fieldset">

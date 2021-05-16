@@ -18,7 +18,7 @@ function PokemonSpecs({ pokemon }){
 
             <img alt="pokemon" width="200px" height="200px" src={pokemon.miniatureSprite} />
             <br />
-            <Typography variant="h3">{pokemon.name}</Typography>
+            <Typography variant="h3">{pokemon.name} <span>#{pokemon.id}</span></Typography>
             {localStorageContent.includes(pokemon.name) ? <Typography>CAUGHT</Typography> : <Typography>TO CATCH</Typography>}
             
             <div className={classes.box}>
