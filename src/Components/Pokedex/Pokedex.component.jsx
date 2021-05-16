@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Box, Button, Grow, Card, Typography, CircularProgress } from '@material-ui/core';
-import PokemonsList from './components/pokemonlist/pokemonslist.component';
-import PokemonSpecs from './components/pokemonspecs/pokemonspecs.component';
+import PokemonsList from './Components/pokemonslist/pokemonslist.component';
+import PokemonSpecs from './Components/pokemonspecs/pokemonspecs.component';
 import { PokedexStyles } from './pokedex.style';
 
 //Style with Material-UI
