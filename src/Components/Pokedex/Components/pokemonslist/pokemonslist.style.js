@@ -3,11 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export const pokedexList = makeStyles((theme) => ({
 
 gridContainer: {
-    /*'@media (max-width: 880px)':{
-        width: '730px',
-    },*/
-    
-    width: '1050px',
+    width: '900px',
     height: '630px',
     marginTop: '50px',
     //background: '#eee6ff',
@@ -28,13 +24,32 @@ paper: {
     
 },
 
+button: {
+
+   // background: '#ee9c8b',
+    color: '#cd5241',
+    borderColor: '#cd5241'
+},
+
+loadMoreButton: {
+    width: '900px',
+    marginTop: '20px',
+    display: 'flex',
+    //direction: 'column',
+    justifyContent: 'center',
+    //background: 'red',
+},
 
 pokemonsGridList: {
     
-    width: '1050px',
-    height: '550px',
+    width: '900px',
+    height: '580px',
     display:"flex",
     flexWrap:"wrap",
+    border: '1px solid',
+    borderRight: 'none',
+    borderTopLeftRadius: '5px',
+    borderBottomLeftRadius: '5px'
     //background: 'orange',
 
 },

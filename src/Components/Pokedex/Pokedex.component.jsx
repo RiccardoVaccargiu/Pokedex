@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Button, Grow, Card, Typography, CircularProgress } from '@material-ui/core';
+import { Box, Grow, Card, Typography } from '@material-ui/core';
 import PokemonsList from './Components/pokemonslist/pokemonslist.component';
 import PokemonSpecs from './Components/pokemonspecs/pokemonspecs.component';
 import { PokedexStyles } from './pokedex.style';
@@ -57,6 +57,7 @@ function Pokedex(){
           caught: false,
           types: data.data.types,
           miniatureSprite: data.data.sprites.front_default,
+          searched: false
         }])
         setIsLoading(false)
       
@@ -66,7 +67,7 @@ function Pokedex(){
   return(
     <>
       <Box display="flex">
-          <PokemonsList pokemons={pokemons} setPokemons={setPokemons} setPokemonSpecs={setPokemonSpecs}/>
+          <PokemonsList onLoadMore={onLoadMore} isLoading={isLoading} pokemons={pokemons} setPokemonSpecs={setPokemonSpecs}/>
           
           {/*If no pokemon is selected (pokemonSpecs is undefined), a placeholder is displayed*/}
           {pokemonSpecs ?
@@ -82,10 +83,6 @@ function Pokedex(){
             </div>
           }
       </Box>
-      
-      <div className={classes.loadMoreButton}>
-      {isLoading ? <CircularProgress /> :  <Button variant='outlined' onClick={onLoadMore}>Load More</Button>}
-    </div>
     </>
   )
 }

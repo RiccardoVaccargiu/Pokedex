@@ -10,16 +10,22 @@ function PokemonSpecs({ pokemon }){
 
     const classes = useStyles();
     const localStorageContent = JSON.parse(localStorage.getItem('caughtPokemon'));
-
     return(
         <div className={classes.pokemonSpecsCardContainer}>
             <Grow in>
             <Paper elevation={3} className={classes.pokemonSpecsCard} style={getTypeStyle(pokemon.types[0].type.name, true)}>
 
+            {pokemon.searched ?
+            <img alt="pokemon" width="200px" height="200px" src={pokemon.sprites.front_default} />
+            :
             <img alt="pokemon" width="200px" height="200px" src={pokemon.miniatureSprite} />
+            }
             <br />
-            <Typography variant="h3">{pokemon.name} <span>#{pokemon.id}</span></Typography>
-            {localStorageContent.includes(pokemon.name) ? <Typography>CAUGHT</Typography> : <Typography>TO CATCH</Typography>}
+            <Typography variant="h3">
+                {localStorageContent.includes(pokemon.name) ? <img alt="caught" width='40px' height='40px' src={process.env.PUBLIC_URL + '/pokeball_full.png'} /> : <img alt="not caught" width='40px' height='40px' src={process.env.PUBLIC_URL + '/pokeball_empty.png'} />}
+                {pokemon.name} <span>#{pokemon.id}</span>
+            </Typography>
+            
             
             <div className={classes.box}>
             {pokemon.types.map((type, id) => (

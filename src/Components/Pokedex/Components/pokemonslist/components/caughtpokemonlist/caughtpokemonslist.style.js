@@ -13,14 +13,15 @@ List: {
     },*/
     color: 'white',
     background: '#505050',
-    width: '220px',
-    maxWidth: 220,
+    width: '180px',
+    minWidth: 180,
     position: 'relative',
     overflow: 'auto',
-    height: '500px',
-    maxHeight: 600,
-    marginTop: '150px',
-    marginRight: '10px'
+    height: '734px',
+    maxHeight: '734px',
+    //marginTop: '150px',
+    marginRight: '20px',
+    float: 'right'
 }
 
 }));

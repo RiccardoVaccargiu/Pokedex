@@ -6,7 +6,7 @@ actionHeader: {
     /*'@media (max-width: 880px)':{
         width: '730px',
     },*/
-    width: '1050px',
+    width: '900px',
     height: '60px',
     //background: 'red'
 },
@@ -20,7 +20,7 @@ inputField: {
 
 sortingDropdown: {
     width: '150px',
-    marginLeft: '85%',
+    marginLeft: '750px',
 },
 
 }))

@@ -4,25 +4,11 @@ export const PokemonSpecsStyle = makeStyles((theme) => ({
 
     
 pokemonSpecsCardContainer: {
-    /*'@media (min-width: 1200px)':{
-        marginLeft: '30px',
-        alignContent: 'center',
-        padding: '0 auto',
-        textAlign: 'center'
-    },
-    '@media (max-width: 1200px)':{
-        display: 'none',
-        marginLeft: '0px',
-        width: '0px',
-        margin: '0 auto',
-        textAlign: 'center'
-    },*/
+
     width: "400px",
     height: "540px",
-    //background: 'red',
-    marginLeft: '35px',
-    //marginLeft: '10px',
-    marginTop: '150px',
+    marginLeft: '15px',
+    marginTop: '120px',
     padding: '0 auto',
 },
     
@@ -37,9 +23,6 @@ pokemonSpecsCard: {
     textAlign: 'center',
     direction:"column",
     background: 'red'
-    /*display: 'flex',
-    justifyContent:"center",
-    alignItems:"center",*/
 },
 
 box: {

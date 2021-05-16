@@ -7,24 +7,21 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { CaughtPokemonListStyle } from './caughtpokemonslist.style';
 const useStyles = CaughtPokemonListStyle;
 
-function CaughtPokemonsList({caughtPokemon}) {
+function CaughtPokemonsList({pokemons }) {
 
     const classes = useStyles();
 
     return(
 
-        <div >
         <List className={classes.List}>
-            <ul>
-        {caughtPokemon.map((pokemon, index) => (
-            <ListItem key={index}>
-                <ListItemText primary={`${index+1} ${pokemon}`} />
+        {pokemons.map((pokemon, index) => (
+            pokemon.caught &&
+            <ListItem key={index} >
+                <img alt="caught" width='40px' height='40px' src={process.env.PUBLIC_URL + '/pokeball_full.png'} />
+                <ListItemText primary={`${pokemon.name}`} />
             </ListItem>
         ))}
-        </ul>
         </List>
-        
-        </div>
     )
 }
 

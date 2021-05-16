@@ -8,16 +8,17 @@ FormControlLabel,
 GridList,
 Grow,
 Typography,
-CircularProgress
+CircularProgress,
+Button
 } from '@material-ui/core';
 import Header from './components/header/header.component'
-//import CaughtPokemonsList from './components/caughtpokemonlist/caughtpokemonslist.component.jsx';
+import CaughtPokemonsList from './components/caughtpokemonlist/caughtpokemonslist.component';
 
 //Style with Material-UI
 import { pokedexList } from './pokemonslist.style';
 const useStyles = pokedexList;
 
-const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
+const PokemonsList = ({onLoadMore, isLoading, pokemons, setPokemonSpecs }) => {
     
     const classes = useStyles();
     const [pokemonFound, setPokemonFound] = useState();
@@ -26,8 +27,6 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
     const [caughtPokemon, setCaughtPokemon] = useState(localStorageContent);
     const [search, setSearch] = useState('');
     const [error, setError] = useState(false);
-    console.log("CAUGHT: ",caughtPokemon)
-    console.log(pokemons)
 
     //when component is mounted check which pokemons have been caught. if a pokemon has been caught, then p.caught = true,
     //otherwise every time the page is refreshed p.caught is equal to false and no caught pokemon will be rendered
@@ -71,7 +70,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
         if(pokemonFound && search){
             return(
             <div>
-            <Paper className={classes.paper} onClick={()=> setPokemonSpecs(pokemonFound)}>
+            <Paper className={classes.paper}>
             <FormControl component="fieldset">
                 <FormGroup aria-label="position">
                     <FormControlLabel
@@ -82,8 +81,9 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                     />
                 </FormGroup>
                 </FormControl>
-                <br />                
-                <img alt="pokemon" width="100px" height="100px" src={pokemonFound.sprites.front_default} />
+                <br />    
+                {/*adding the 'search' property because a searched pokemon is represented by an object with a different structure so 'pokemonspecs' doesn't know what 'miniatureSprite' is.*/}            
+                <img onClick={()=> setPokemonSpecs({...pokemonFound, searched: true})} alt="pokemon" width="100px" height="100px" src={pokemonFound.sprites.front_default} />
                     <p>{pokemonFound.name}</p>
                 </Paper>
             </div>
@@ -180,8 +180,7 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
 
     return(
         <>
-        {/*<CaughtPokemonsList caughtPokemon={caughtPokemon} />*/}
-        
+        <CaughtPokemonsList pokemons={pokemons} />
         <div className={classes.gridContainer}>
             
             <Header error={error} setError={setError} search={search} setSearch={setSearch} setPokemonFound={setPokemonFound} sortBy={sortBy} setSortBy={setSortBy} />
@@ -199,6 +198,9 @@ const PokemonsList = ({ pokemons, setPokemonSpecs }) => {
                 {renderSortedPokemons()}
             </GridList>
             }
+             <div className={classes.loadMoreButton}>
+                {isLoading ? <CircularProgress /> :  <Button variant='outlined' className={classes.button} onClick={onLoadMore}>Load More</Button>}
+            </div>
         </div>
         </>
     )
