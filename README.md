@@ -18,7 +18,7 @@ to run the application in development mode.
 
 ### Components tree:
 
-src
+`src
 |
 \---_Components_
     \---_Pokedex_
@@ -44,4 +44,4 @@ src
             \---_pokemonspecs_  //handles the single pokemon's specification
                     pokemonspecs.component.jsx
                     pokemonspecs.style.js
-                    typesstyle.style.js
+                    typesstyle.style.js`
