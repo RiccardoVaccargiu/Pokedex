@@ -7,7 +7,7 @@
 3. Open the project with an editor
 4. Type `npm install` in order to install node_modules
 5. you need to install the following packages:
-5.1 `npm install @material-ui/core @material-ui/icons @material-ui/styles axios`
+..1 `npm install @material-ui/core @material-ui/icons @material-ui/styles axios`
 
 In the project directory, you can run:
 
