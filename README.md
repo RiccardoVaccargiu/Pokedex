@@ -10,7 +10,7 @@
 ##### You need to install the following packages:
 `npm install @material-ui/core @material-ui/icons @material-ui/styles axios`
 
-In the project directory, you can run:
+In the terminal you can run:
 
 `npm start`
 
