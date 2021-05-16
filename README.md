@@ -4,7 +4,8 @@
 
 1. dowload the zipped project folder
 2. uzip the folder
-3. 
+3. open the project with an editor
+4. type `npm install` in order to install node_modules
 
 ## you need to install the following packages:
 
