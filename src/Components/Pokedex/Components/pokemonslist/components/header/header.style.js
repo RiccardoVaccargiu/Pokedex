@@ -15,14 +15,23 @@ inputField: {
     height: '60px',
     display: 'flex',
     float: 'left',
-    margin: '5px'
+    margin: '5px',
+    
+    
+      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#222224"
+      }
     
 },
 
+  
 sortingDropdown: {
     width: '150px',
     float: 'right',
-    margin: '5px'
+    margin: '5px',
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#222224"
+      }
     
 },
 

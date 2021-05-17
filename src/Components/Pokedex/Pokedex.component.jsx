@@ -81,7 +81,7 @@ function Pokedex(){
       </AppBar>
       <Grid container >
         <Grid item xs={12} lg={8} sm={12} md={6}>
-        <Paper style={{marginLeft: '5px', marginTop: 'auto'}}><PokemonsList onLoadMore={onLoadMore} isLoading={isLoading} pokemons={pokemons} setPokemonSpecs={setPokemonSpecs}/></Paper>
+        <PokemonsList onLoadMore={onLoadMore} isLoading={isLoading} pokemons={pokemons} setPokemonSpecs={setPokemonSpecs}/>
         </Grid>
         <Grid item xs={12} lg={4} sm={12} md={6}>
         {pokemonSpecs ?

@@ -11,6 +11,13 @@ gridContainer: {
     justify: "center",
 },
 
+pokemonsGridList: {
+    width: '100%',
+    height: '520px',
+    display:"flex",
+    flexWrap:"wrap",
+
+},
 
 paper: {
     '&:hover':{
@@ -26,9 +33,8 @@ paper: {
 
 button: {
 
-   // background: '#ee9c8b',
-    color: '#CC0000',
-    borderColor: '#CC0000',
+    color: '#222224',
+    borderColor: '#222224',
     margin: '5px',
 },
 
@@ -38,15 +44,6 @@ loadMoreButton: {
     display: 'flex',
     justifyContent: 'center',
     background: '#ececec',
-},
-
-pokemonsGridList: {
-    
-    width: '100%',
-    height: '520px',
-    display:"flex",
-    flexWrap:"wrap",
-
 },
 
 pokemonNotFound: {

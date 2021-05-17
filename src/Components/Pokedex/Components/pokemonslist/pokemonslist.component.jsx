@@ -179,7 +179,7 @@ const PokemonsList = ({onLoadMore, isLoading, pokemons, setPokemonSpecs }) => {
 
     return(
         <>
-        <div className={classes.gridContainer}>
+        <Paper className={classes.gridContainer}>
         <Header error={error} setError={setError} search={search} setSearch={setSearch} setPokemonFound={setPokemonFound} sortBy={sortBy} setSortBy={setSortBy} />
             
             {error ? 
@@ -198,7 +198,7 @@ const PokemonsList = ({onLoadMore, isLoading, pokemons, setPokemonSpecs }) => {
              <div className={classes.loadMoreButton}>
                 {isLoading ? <CircularProgress /> :  <Button variant='outlined' className={classes.button} onClick={onLoadMore}>Load More</Button>}
             </div>
-        </div>
+            </Paper>
         </>
     )
 }
