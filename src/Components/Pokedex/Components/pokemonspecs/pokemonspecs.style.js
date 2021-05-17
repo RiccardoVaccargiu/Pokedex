@@ -7,7 +7,7 @@ pokemonSpecsCardContainer: {
 
     width: "400px",
     height: "540px",
-    marginLeft: '15px',
+    margin: 'auto',
     marginTop: '120px',
     padding: '0 auto',
 },

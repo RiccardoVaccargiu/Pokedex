@@ -3,12 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 export const HeaderStyle = makeStyles((theme) => ({
 
 actionHeader: {
-    /*'@media (max-width: 880px)':{
-        width: '730px',
-    },*/
-    width: '900px',
-    height: '60px',
-    //background: 'red'
+
+    width: '100%',
+    height: '65px',
+    background: '#ececec',
+    borderRadius: '5%',
 },
 inputField: {
 
@@ -16,11 +15,15 @@ inputField: {
     height: '60px',
     display: 'flex',
     float: 'left',
+    margin: '5px'
+    
 },
 
 sortingDropdown: {
     width: '150px',
-    marginLeft: '750px',
+    float: 'right',
+    margin: '5px'
+    
 },
 
 }))

@@ -5,7 +5,7 @@ export const PokedexStyles = makeStyles((theme) => ({
 pokemonSpecsCardContainer: {
     width: "400px",
     height: "540px",
-    marginLeft: '15px',
+    margin: 'auto',
     marginTop: '120px',
     padding: '0 auto',
 },
@@ -20,6 +20,31 @@ pokemonSpecsCardPlaceholder: {
     alignItems:"center",
     color: '#2196f3',
     background: '#cde7fe',
+},
+
+
+animatedItem: {
+    width: "50px",
+    height: "50px",
+    animation: `$myEffect 3000ms ${theme.transitions.easing.easeInOut}`
+},
+
+"@keyframes myEffect": {
+    "0%": {
+      opacity: 0,
+      transform: "rotate(0deg)"
+    },
+    "100%": {
+      opacity: 1,
+      transform: "rotate(360deg)"
+    }
+},
+
+title: {
+
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"
 }
 
 }));

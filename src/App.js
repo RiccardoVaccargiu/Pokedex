@@ -4,7 +4,7 @@ function App() {
 
   return (
     <div style={{backgroundImage: `url(${"./background.png"})`, backgroundSize: 'cover',
-    backgroundPosition: 'center',}}>
+    backgroundPosition: 'center'}}>
       <Pokedex />
     </div>
   );

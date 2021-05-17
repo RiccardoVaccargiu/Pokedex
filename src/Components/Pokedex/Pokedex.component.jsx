@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Grow, Card, Typography } from '@material-ui/core';
+import { Box, Grow, Card, Typography, Grid, Paper, AppBar } from '@material-ui/core';
 import PokemonsList from './Components/pokemonslist/pokemonslist.component';
 import PokemonSpecs from './Components/pokemonspecs/pokemonspecs.component';
 import { PokedexStyles } from './pokedex.style';
@@ -64,25 +64,40 @@ function Pokedex(){
     })
   }
 
+  const breakpoints = {
+
+    xs: 0,
+    sm: 600,
+    md: 960,
+    lg: 1280,
+    xl: 1920,
+  }
+
   return(
     <>
-      <Box display="flex">
-          <PokemonsList onLoadMore={onLoadMore} isLoading={isLoading} pokemons={pokemons} setPokemonSpecs={setPokemonSpecs}/>
-          
-          {/*If no pokemon is selected (pokemonSpecs is undefined), a placeholder is displayed*/}
-          {pokemonSpecs ?
+      <AppBar position="static" style={{background: '#222224', display: 'flex', flexDirection: 'row'}}>
+        <img className={classes.animatedItem} src={process.env.PUBLIC_URL + '/pokeball_full.png'} />
+        <Typography variant='h5' className={classes.title}>Pokèdex</Typography>
+      </AppBar>
+      <Grid container >
+        <Grid item xs={12} lg={8} sm={12} md={6}>
+        <Paper style={{marginLeft: '5px', marginTop: 'auto'}}><PokemonsList onLoadMore={onLoadMore} isLoading={isLoading} pokemons={pokemons} setPokemonSpecs={setPokemonSpecs}/></Paper>
+        </Grid>
+        <Grid item xs={12} lg={4} sm={12} md={6}>
+        {pokemonSpecs ?
 
-            <PokemonSpecs pokemon={pokemonSpecs} />
-          :            
-            <div className={classes.pokemonSpecsCardContainer}>
-              <Grow in>
-                  <Card className={classes.pokemonSpecsCardPlaceholder}>
-                    <Typography variant='h4'>Choose a pokemon to see its details!</Typography>
-                  </Card>
-              </Grow>
-            </div>
-          }
-      </Box>
+        <PokemonSpecs pokemon={pokemonSpecs} />
+        :            
+        <div className={classes.pokemonSpecsCardContainer}>
+          <Grow in>
+              <Card className={classes.pokemonSpecsCardPlaceholder}>
+                <Typography variant='h4'>Choose a pokemon to see its details!</Typography>
+              </Card>
+          </Grow>
+        </div>
+        }
+        </Grid>
+      </Grid>
     </>
   )
 }

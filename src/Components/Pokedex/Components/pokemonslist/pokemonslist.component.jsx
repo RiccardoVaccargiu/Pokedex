@@ -12,7 +12,6 @@ CircularProgress,
 Button
 } from '@material-ui/core';
 import Header from './components/header/header.component'
-import CaughtPokemonsList from './components/caughtpokemonlist/caughtpokemonslist.component';
 
 //Style with Material-UI
 import { pokedexList } from './pokemonslist.style';
@@ -180,10 +179,8 @@ const PokemonsList = ({onLoadMore, isLoading, pokemons, setPokemonSpecs }) => {
 
     return(
         <>
-        <CaughtPokemonsList pokemons={pokemons} />
         <div className={classes.gridContainer}>
-            
-            <Header error={error} setError={setError} search={search} setSearch={setSearch} setPokemonFound={setPokemonFound} sortBy={sortBy} setSortBy={setSortBy} />
+        <Header error={error} setError={setError} search={search} setSearch={setSearch} setPokemonFound={setPokemonFound} sortBy={sortBy} setSortBy={setSortBy} />
             
             {error ? 
             <div className={classes.pokemonNotFound}>
