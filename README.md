@@ -33,9 +33,6 @@ to run the application in development mode.
             |   |   pokemonslist.style.js
             |   |
             |   \---_components_  //children of pokemonslist
-            |       +---_caughtpokemonlist_ //handles the list that contains all the names of the caught pokemons
-            |       |       caughtpokemonslist.component.jsx
-            |       |       caughtpokemonslist.style.js
             |       |
             |       \---_header_  //contains the search input and the sorting dropdown menu
             |               header.component.jsx
