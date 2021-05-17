@@ -18,10 +18,16 @@ pokemonSpecsCardPlaceholder: {
     display: 'flex',
     justifyContent:"center",
     alignItems:"center",
-    color: '#2196f3',
-    background: '#cde7fe',
+    color: 'grey',
+    background: '#ececec',
 },
 
+appbar: {
+
+    background: '#222224',
+    display: 'flex',
+    flexDirection: 'row'
+},
 
 animatedItem: {
     width: "50px",

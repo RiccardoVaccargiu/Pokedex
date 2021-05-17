@@ -16,11 +16,10 @@ inputField: {
     display: 'flex',
     float: 'left',
     margin: '5px',
-    
-    
-      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#222224"
-      }
+    //overriding MUI styles in order to change borderColor
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#222224"
+    }
     
 },
 
@@ -28,6 +27,7 @@ inputField: {
 sortingDropdown: {
     width: '150px',
     float: 'right',
+    display: 'flex',
     margin: '5px',
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
         borderColor: "#222224"

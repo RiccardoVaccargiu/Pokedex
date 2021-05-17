@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Grow, Card, Typography, Grid, Paper, AppBar } from '@material-ui/core';
+import { Grow, Card, Typography, Grid, AppBar } from '@material-ui/core';
 import PokemonsList from './Components/pokemonslist/pokemonslist.component';
 import PokemonSpecs from './Components/pokemonspecs/pokemonspecs.component';
 import { PokedexStyles } from './pokedex.style';
@@ -64,19 +64,10 @@ function Pokedex(){
     })
   }
 
-  const breakpoints = {
-
-    xs: 0,
-    sm: 600,
-    md: 960,
-    lg: 1280,
-    xl: 1920,
-  }
-
   return(
     <>
-      <AppBar position="static" style={{background: '#222224', display: 'flex', flexDirection: 'row'}}>
-        <img className={classes.animatedItem} src={process.env.PUBLIC_URL + '/pokeball_full.png'} />
+      <AppBar position="static" className={classes.appbar}>
+        <img alt="logo" className={classes.animatedItem} src={process.env.PUBLIC_URL + '/pokeball_full.png'} />
         <Typography variant='h5' className={classes.title}>Pokèdex</Typography>
       </AppBar>
       <Grid container >

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import {
-Button,
 TextField,
 FormControl,
 Select,
@@ -31,18 +30,27 @@ function Header(props){
         props.setSearch(e.target.value)
     }
 
-    const searchPokemon = async() => {
+    useEffect(() => {
+        const searchPokemon = async() => {
 
-        props.setPokemonFound();
+            props.setPokemonFound();
+    
+            //request for a specific pokemon (searched by name)
+            await axios.get(BASE_URL+`/${props.search}`)
+            .then(response => {
+                props.setPokemonFound(response.data)
+                }
+            )
+            .catch(err => props.setError(true))
+        }
+        
+        if(props.search.length > 0){
+            searchPokemon(props.search)
+        }
+    //eslint-disable-next-line
+    }, [props.search])
 
-        //request for a specific pokemon (searched by name)
-        await axios.get(BASE_URL+`/${props.search}`)
-        .then(response => {
-            props.setPokemonFound(response.data)
-            }
-        )
-        .catch(err => props.setError(true))
-    }
+    
 
     const onChangeSorting = (e) => {
 
@@ -55,29 +63,14 @@ function Header(props){
           setError(false)
         }, 2000)
         
-      }, [error, setError]);
+    }, [error, setError]);
 
-      const keyPress = (e) => {
-        if(e.keyCode == 13){
-            searchPokemon()
-        }
-     }
     
     return(
 
         <div className={classes.actionHeader}>
             <div className={classes.inputField}>
-                <TextField variant="outlined" onKeyDown={keyPress} onChange={onSearchChange} />
-                
-                {props.search.length > 0 ? 
-                    <Button onClick={searchPokemon} >Search</Button>
-                :
-                <>
-                    <Button disabled >Search</Button>    
-                </>
-                }    
-            </div>
-            <div className={classes.inputField}>
+                <TextField variant="outlined" onChange={onSearchChange} placeholder="At least 2 chars to search" />
             </div>
             <div className={classes.sortingDropdown}>
                 <FormControl>

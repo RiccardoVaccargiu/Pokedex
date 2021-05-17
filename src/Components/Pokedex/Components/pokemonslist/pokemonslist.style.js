@@ -9,6 +9,8 @@ gridContainer: {
     //background: '#eee6ff',
     alignItems: "center",
     justify: "center",
+    marginLeft: '5px',
+    minWidth: '300px'
 },
 
 pokemonsGridList: {
@@ -16,8 +18,10 @@ pokemonsGridList: {
     height: '520px',
     display:"flex",
     flexWrap:"wrap",
+    
     [theme.breakpoints.up('xl')]: {
         height: '720px',
+        minWidth: '300px',
       },
 
 },
