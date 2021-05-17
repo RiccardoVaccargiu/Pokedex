@@ -16,6 +16,9 @@ pokemonsGridList: {
     height: '520px',
     display:"flex",
     flexWrap:"wrap",
+    [theme.breakpoints.up('xl')]: {
+        height: '720px',
+      },
 
 },
 

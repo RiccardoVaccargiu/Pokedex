@@ -1,5 +1,5 @@
 import React from 'react';
-import {Typography, Box, Grow, Paper} from '@material-ui/core'
+import {Typography, Box, Grow, Paper, Card, CardHeader, Avatar} from '@material-ui/core'
 //Style with Material-UI
 import { PokemonSpecsStyle } from "./pokemonspecs.style";
 import { getTypeStyle } from './typesstyle.style';
@@ -13,8 +13,14 @@ function PokemonSpecs({ pokemon }){
     return(
         <div className={classes.pokemonSpecsCardContainer}>
             <Grow in>
-            <Paper elevation={3} className={classes.pokemonSpecsCard} style={getTypeStyle(pokemon.types[0].type.name, true)}>
-
+            <Card elevation={3} className={classes.pokemonSpecsCard} style={getTypeStyle(pokemon.types[0].type.name, true)}>
+            <CardHeader
+                avatar={
+                <Avatar>
+                    {localStorageContent.includes(pokemon.name) ? <img alt="caught" width='40px' height='40px' src={process.env.PUBLIC_URL + '/pokeball_full.png'} /> : <img alt="not caught" width='40px' height='40px' src={process.env.PUBLIC_URL + '/pokeball_empty.png'} />}
+                </Avatar>
+                }
+            />
             {pokemon.searched ?
             <img alt="pokemon" width="200px" height="200px" src={pokemon.sprites.front_default} />
             :
@@ -22,7 +28,6 @@ function PokemonSpecs({ pokemon }){
             }
             <br />
             <Typography variant="h3">
-                {localStorageContent.includes(pokemon.name) ? <img alt="caught" width='40px' height='40px' src={process.env.PUBLIC_URL + '/pokeball_full.png'} /> : <img alt="not caught" width='40px' height='40px' src={process.env.PUBLIC_URL + '/pokeball_empty.png'} />}
                 {pokemon.name} <span>#{pokemon.id}</span>
             </Typography>
             
@@ -43,7 +48,7 @@ function PokemonSpecs({ pokemon }){
 
             <Typography key={id} variant="subtitle1">{ability.ability.name}</Typography>
             ))}
-            </Paper>
+            </Card>
             </Grow>
         </div>
     )

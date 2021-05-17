@@ -97,7 +97,7 @@ const PokemonsList = ({onLoadMore, isLoading, pokemons, setPokemonSpecs }) => {
                         .sort((a,b) => a.id - b.id) //sometimes fetched pokemons are in a wrong order, then should be sorted before rendering them
                         .map((pokemon, id) => (
                             <Grow in>
-                                <Paper key={id} className={classes.paper}>
+                                <Paper onClick={()=> setPokemonSpecs(pokemon)} key={id} className={classes.paper}>
                                     <FormControl component="fieldset">
                                     <FormGroup aria-label="position" row>
                                         <FormControlLabel
@@ -109,7 +109,7 @@ const PokemonsList = ({onLoadMore, isLoading, pokemons, setPokemonSpecs }) => {
                                     </FormGroup>
                                     </FormControl>
                                     <br />
-                                    <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.miniatureSprite} />
+                                    <img alt="pokemon" width="100px" height="100px" src={pokemon.miniatureSprite} />
                                     <p><span>#{pokemon.id} </span>{pokemon.name}</p>
                                 </Paper>
                             </Grow>
