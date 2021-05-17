@@ -7,14 +7,12 @@
 3. In the terminal, move to the project folder:  _.../Pokedex-main_
 4. Type `npm install` in order to install node_modules
 
-##### You need to install the following packages:
-`npm install @material-ui/core @material-ui/icons @material-ui/styles axios`
-
 Now, in the terminal you can type:
-
 `npm start`
-
 to run the application in development mode.
+
+##### installed packeges:
+`npm install @material-ui/core @material-ui/icons @material-ui/styles axios`
 
 ### Components tree:
 
