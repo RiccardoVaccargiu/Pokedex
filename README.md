@@ -1,7 +1,7 @@
 # Pokedex
 
 ### Visit the pokèdex app directly by clicking on this link:
-(https://relaxed-joliot-c1b854.netlify.app)
+https://relaxed-joliot-c1b854.netlify.app
 
 ### Run the app locally in development mode
 #### _node version 14.15.1_
