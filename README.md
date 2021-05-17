@@ -8,7 +8,7 @@ https://relaxed-joliot-c1b854.netlify.app
 
 1. Dowload the zipped project folder
 2. Unzip the folder
-3. In the terminal, move to the project folder:  _.../Pokedex-main_
+3. In the terminal, move into the project folder:  _.../Pokedex-main_
 4. Type `npm install` in order to install node_modules
 
 Now, in the terminal you can type:
