@@ -83,7 +83,7 @@ const PokemonsList = ({onLoadMore, isLoading, pokemons, setPokemonSpecs }) => {
                 <br />    
                 {/*adding the 'search' property because a searched pokemon is represented by an object with a different structure so 'pokemonspecs' doesn't know what 'miniatureSprite' is.*/}            
                 <img onClick={()=> setPokemonSpecs({...pokemonFound, searched: true})} alt="pokemon" width="100px" height="100px" src={pokemonFound.sprites.front_default} />
-                    <p>{pokemonFound.name}</p>
+                    <p><span>#{pokemonFound.id} </span>{pokemonFound.name}</p>
                 </Paper>
             </div>
             )
@@ -136,8 +136,7 @@ const PokemonsList = ({onLoadMore, isLoading, pokemons, setPokemonSpecs }) => {
                                 </FormControl>
                                 <br />
                                 <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.miniatureSprite} />
-                                <p>{pokemon.name}</p>
-                            
+                                <p><span>#{pokemon.id} </span>{pokemon.name}</p>
                             </Paper>
                             : ""
                         ))
@@ -161,8 +160,7 @@ const PokemonsList = ({onLoadMore, isLoading, pokemons, setPokemonSpecs }) => {
                                 </FormControl>
                                 <br />
                                 <img onClick={()=> setPokemonSpecs(pokemon)} alt="pokemon" width="100px" height="100px" src={pokemon.miniatureSprite} />
-                                <p>{pokemon.name}</p>
-                            
+                                <p><span>#{pokemon.id} </span>{pokemon.name}</p>
                             </Paper>
                             : ""
                         ))

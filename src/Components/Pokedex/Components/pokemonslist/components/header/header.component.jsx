@@ -57,19 +57,23 @@ function Header(props){
         
       }, [error, setError]);
 
-
+      const keyPress = (e) => {
+        if(e.keyCode == 13){
+            searchPokemon()
+        }
+     }
+    
     return(
 
         <div className={classes.actionHeader}>
             <div className={classes.inputField}>
-                <TextField variant="outlined" onChange={onSearchChange} />
+                <TextField variant="outlined" onKeyDown={keyPress} onChange={onSearchChange} />
                 
                 {props.search.length > 0 ? 
-                    <Button onClick={searchPokemon}>Search</Button>
+                    <Button onClick={searchPokemon} >Search</Button>
                 :
                 <>
-                    <Button disabled >Search</Button>
-                    
+                    <Button disabled >Search</Button>    
                 </>
                 }    
             </div>

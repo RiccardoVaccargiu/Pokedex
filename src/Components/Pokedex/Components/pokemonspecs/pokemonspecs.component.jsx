@@ -36,8 +36,7 @@ function PokemonSpecs({ pokemon }){
             </div>
             
             <br />
-            
-            <Typography variant="subtitle1"> <b>Weight:</b> {pokemon.weight}</Typography>
+            <Typography variant="subtitle1"> <b>Weight:</b> {pokemon.weight/10}Kg</Typography>
             <br />
             <Typography variant="subtitle1"><b>Abilities</b></Typography>
             {pokemon.abilities.map((ability, id) => (
